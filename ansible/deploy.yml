@@ -1,0 +1,15 @@
+---
+- hosts: portfolio
+  remote_user: root
+  tasks:
+    - name: Delete the previous build
+      file:
+        state: absent
+        path: /var/www/html
+    - name: Copy the new build to the remote server
+      copy:
+        src: ../public/
+        dest: /var/www/html
+        owner: root
+        group: root
+        mode: 0755
